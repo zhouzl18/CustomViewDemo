@@ -30,7 +30,9 @@ public class CustomView extends View{
         //drawCircle(canvas);
         //drawRect(canvas);
         //drawRoundRect(canvas);
-        drawOval(canvas);
+        //drawOval(canvas);
+        //drawArc(canvas);
+        drawText(canvas);
     }
 
     protected void drawCircle(Canvas canvas){
@@ -128,5 +130,45 @@ public class CustomView extends View{
 
         //绘制空心圆
         canvas.drawOval(100, 400, 500, 600, paint);
+    }
+
+    protected void drawArc(Canvas canvas){
+        //创建画笔
+        Paint paint = new Paint();
+
+        //抗锯齿
+        paint.setAntiAlias(true);
+
+        //设置颜色
+        paint.setColor(getResources().getColor(android.R.color.holo_blue_dark));
+
+        //绘制不带圆心的弧线
+        RectF rectF = new RectF(100, 100, 200, 200);
+        canvas.drawArc(rectF, 0, 270, false, paint);
+
+        //绘制带圆心的弧线
+        rectF.set(100, 300, 200, 400);
+        canvas.drawArc(rectF, 0, 270, true, paint);
+
+        //设置空心Style
+        paint.setStyle(Paint.Style.STROKE);
+
+        //设置边框大小
+        paint.setStrokeWidth(20);
+
+        //绘制空心没有圆心的圆弧
+        rectF.set(100, 500, 200, 600);
+        canvas.drawArc(rectF, 0, 270, false, paint);
+        //绘制空心有圆心的圆弧
+        rectF.set(100, 700, 200, 800);
+        canvas.drawArc(rectF, 0, 270, true, paint);
+    }
+
+    protected void drawText(Canvas canvas){
+        Paint paint = new Paint();
+        paint.setAntiAlias(true);
+        paint.setColor(getResources().getColor(android.R.color.holo_green_dark));
+        paint.setTextSize(100);
+        canvas.drawText("ZZLJjHhoYy", 80, 150, paint);
     }
 }
